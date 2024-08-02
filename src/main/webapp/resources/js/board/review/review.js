@@ -27,6 +27,12 @@ $('#submitBtn').click(async (e) => {
   const rate = $('#rate').val();
   const object = {};
   let data = '';
+
+  if (title.length === 0) {
+    alert("제목을 입력해주세요");
+    return;
+  }
+
   formData.append("title", title);
   formData.append("pros", pros);
   formData.append("cons", cons);
@@ -47,7 +53,8 @@ $('#submitBtn').click(async (e) => {
     }
     location.href = `${SERVER_IP}/board?seq=${boardPk}`
   } else {
-    const reviewPk = location.href.substring(location.href.lastIndexOf("/") + 1);
+    const reviewPk = location.href.substring(location.href.lastIndexOf("=") + 1);
+    console.log("reviewPk", reviewPk)
     data = await updateReviewByReviewPk(localStorage.getItem('boardPk'), reviewPk, object);
     let jsonData = JSON.parse(data);
     if (jsonData.result === "0") {

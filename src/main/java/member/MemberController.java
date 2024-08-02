@@ -173,7 +173,7 @@ public class MemberController extends HttpServlet {
         Cookie loginCookie = new Cookie("mySeq", mySeq);
         loginCookie.setPath("/");
         loginCookie.setHttpOnly(true);
-        loginCookie.setSecure(true);
+        //loginCookie.setSecure(true);
         res.addCookie(loginCookie);
         session.setAttribute("member", member);
       }
@@ -204,6 +204,13 @@ public class MemberController extends HttpServlet {
       result = service.join(email, password, name, phone, nickname);
       if (result != FAILURE) {
         Member member = service.getMember(email);
+        System.out.println("member =>>" + member);
+
+        Cookie loginCookie = new Cookie("mySeq", member.getSeq() + "");
+        loginCookie.setPath("/");
+        loginCookie.setHttpOnly(true);
+        res.addCookie(loginCookie);
+
         HttpSession session = req.getSession();
         session.setAttribute("member", member);
       }
@@ -362,10 +369,10 @@ public class MemberController extends HttpServlet {
     Member member = (Member) session.getAttribute("member");
     int member_seq = member.getSeq();
     String email = member.getEmail();
-    String password = encode(req.getParameter("modifiedPassword"));
+    String password = encode(req.getParameter("password"));
     String name = member.getName();
     String phone = member.getPhone();
-    String nickname = req.getParameter("modifiedNickname");
+    String nickname = req.getParameter("nickname");
     System.out.println(nickname);
     System.out.println(password);
 
@@ -385,8 +392,9 @@ public class MemberController extends HttpServlet {
 
     MemberService service = MemberService.getInstance();
     service.modifyS(modifiedMember);
+    session.setAttribute("member", modifiedMember);
 
-    req.getRequestDispatcher("/WEB-INF/jsp/member/my_page.jsp").forward(req, res);
+    req.getRequestDispatcher("/").forward(req, res);
   }
 
   //회원 탈퇴
@@ -402,21 +410,18 @@ public class MemberController extends HttpServlet {
       service.withdrawS(member_seq);
     }
     req.setAttribute("flag", flag);
-
-    String view = "mainPage.jsp";
-    RequestDispatcher rd = req.getRequestDispatcher(view);
-    rd.forward(req, res);
+    res.sendRedirect("/");
   }
 
   //내 리뷰리스트 불러오기
   private void myReviewList(HttpServletRequest req, HttpServletResponse res)
-      throws ServletException, IOException {
+          throws ServletException, IOException {
     HttpSession session = req.getSession(false);
     Member loginMember = (Member) session.getAttribute("member");
     int member_seq = loginMember.getSeq();
     //System.out.println(member_seq);
     MemberService service = MemberService.getInstance();
-    ArrayList<Review> myReviewList = service.myReviewListS(member_seq);
+    ArrayList<MemberDAO.MyReview> myReviewList = service.myReviewListS(member_seq);
     req.setAttribute("loginMember", loginMember);
     req.setAttribute("myReviewList", myReviewList);
 

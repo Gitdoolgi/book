@@ -66,5 +66,4 @@ public class MainController extends HttpServlet {
         String view = "index.jsp";
         req.getRequestDispatcher(view).forward(req, res);
     }
-
 }

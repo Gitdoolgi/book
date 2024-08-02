@@ -12,7 +12,7 @@
         <a href="/">
           <img src="${pageContext.request.contextPath}/resources/imgs/logo.png" alt="">
         </a>
-        <p>강남땃쥐</p>
+        <p>가산땃쥐</p>
       </div>
       <c:choose>
         <c:when test="${empty member}">
@@ -25,6 +25,7 @@
     </div>
 
 
+<<<<<<< HEAD
   <nav class="search-form">
     <form action="/search?m=search" method="post">
       <div class="search-input">
@@ -32,6 +33,14 @@
 <%--        <input class="search-bar" type="text" placeholder="학원을 검색해주세요." >--%>
         <span class="search-image--icon">
             <button class = "search-button" type="submit" style="border: none; background:none;padding: 0;" >
+=======
+    <nav class="search-form">
+      <form action="/search?m=search" method="post">
+        <div class="search-input">
+          <jsp:include page="${pageContext.request.contextPath}/WEB-INF/jsp/main/autosearch.jsp"/>
+          <%--        <input class="search-bar" type="text" placeholder="학원을 검색해주세요." >--%>
+          <span class="search-image--icon">
+>>>>>>> a5b8b9267ce9c29e3aa407ac31392dbd1485b25a
             <img src="${pageContext.request.contextPath}/resources/imgs/search_icon.png" alt="검색이미지">
             </button>
         </span>

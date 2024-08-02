@@ -55,6 +55,7 @@ a {
 
 .main-card {
     background-color: white;
+    border-bottom: 1px solid #b4b2b2;
 }
 
 .academy-item-name {
@@ -93,9 +94,14 @@ a {
 .academy-item-menus {
     display: flex;
     justify-content: space-between;
+<<<<<<< HEAD
     width: auto;
     height: 30px;
     margin-top: 0%;
+=======
+    height: 50px;
+
+>>>>>>> a5b8b9267ce9c29e3aa407ac31392dbd1485b25a
 }
 .academy-rate{
     display: flex;
