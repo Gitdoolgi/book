@@ -12,6 +12,7 @@
             item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
             return $("<li></li>")
                 .data("item.autocomplete", item)
+
                 .append("<a>" + item.label + "</a>")
                 .appendTo(ul);
         };
@@ -23,6 +24,15 @@
                     dataType: "json",
                     data: {acd_name : $("#academy_name").val()},
                     success: function(data) {
+                       let uniqueData = [];
+                       let labels = new Set();
+                       $.each(data, function(index, item) {
+                          if (!labels.has(item.academy_name)) {
+                             labels.add(item.academy_name);
+                             uniqueData.push(item);
+                          }
+                       });
+
                         response(
                             $.map(data, function(item) {
                                 console.log(item);
@@ -37,7 +47,7 @@
                     }
                 });
             },
-            //조회를 위한 최소글자수
+            //조회를 위한 최소글자수 성공하면 선택할 수 있게
             minLength: 1,
             select: function(target) {
                 const selected = document.getElementById("academy_name");

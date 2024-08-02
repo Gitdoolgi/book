@@ -46,7 +46,7 @@ a {
 }
 
 .search-count-academy {
-    font-weight: bolder;
+    font-size: 16px;
 }
 
 .main-contents {
@@ -64,9 +64,10 @@ a {
 
 .main-ul {
     list-style-type: none;
-    background-color: antiquewhite;
+    background-color: #fffaf3;
     display: flex;
     flex-direction: column;
+    width: auto;
 }
 
 .academy-item-content {
@@ -91,26 +92,35 @@ a {
 
 .academy-item-menus {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    height: 50px;
+    width: auto;
+    height: 30px;
+    margin-top: 0%;
 }
 .academy-rate{
+    display: flex;
+    align-items: center;
     width: 50%;
 }
 
 .academy-rate-img {
     height: 20px;
     width: 20px;
+    margin-left: 30%;
+    margin-right: 10px;
+
 }
 .academy-review{
-    width: 50%;
-
+    display: flex;
+    align-items: center;
+    width: 50%
 }
 
 .academy-count-img {
     height: 20px;
     width: 20px;
+    margin-left: 30%;
+    margin-right: 10px;
 }
 
 footer {

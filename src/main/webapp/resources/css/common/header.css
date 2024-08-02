@@ -71,6 +71,10 @@ header .search-form {
 
 .search-form img {
     height: 30px;
+    width: 30px;
+}
+.search-button{
+    cursor : pointer;
 }
 
 .search-form .search-input {
